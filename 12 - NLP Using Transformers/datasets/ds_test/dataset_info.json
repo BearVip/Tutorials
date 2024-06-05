@@ -1,0 +1,98 @@
+{
+  "citation": "",
+  "description": "",
+  "features": {
+    "level_0": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "index": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "SCASEID": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "SUMMARY_EN": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "SUMMARY_GE": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "INJSEVA": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "NUMTOTV": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "WEATHER1": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "WEATHER2": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "WEATHER3": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "WEATHER4": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "WEATHER5": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "WEATHER6": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "WEATHER7": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "WEATHER8": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "labels": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "words per case summary": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "SUMMARY_MX": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "INJ": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "input_ids": {
+      "feature": {
+        "dtype": "int32",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "attention_mask": {
+      "feature": {
+        "dtype": "int8",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    }
+  },
+  "homepage": "",
+  "license": ""
+}
