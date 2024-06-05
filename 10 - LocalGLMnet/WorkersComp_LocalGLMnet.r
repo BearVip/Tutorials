@@ -22,7 +22,7 @@ seed <- 100
 Sys.setenv(PYTHONHASHSEED = seed)
 set.seed(seed)
 reticulate::py_set_seed(seed)
-tensorflow::tf$random$set_seed(seed)
+tensorflow::tf$compat$v1$random$set_random_seed(seed)
 
 
 ## -----------------------------------------------------------------------------
@@ -135,7 +135,7 @@ plot_size <- function(test, xvar, title, model, mdlvariant) {
 
 
 ## -----------------------------------------------------------------------------
-load(file.path("../0_data/WorkersComp.RData"))  # relative path to .Rmd file
+load("0_data/WorkersComp.RData")  # relative path to .Rmd file
 
 
 ## -----------------------------------------------------------------------------

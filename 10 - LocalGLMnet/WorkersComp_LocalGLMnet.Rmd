@@ -67,7 +67,7 @@ seed <- 100
 Sys.setenv(PYTHONHASHSEED = seed)
 set.seed(seed)
 reticulate::py_set_seed(seed)
-tensorflow::tf$random$set_seed(seed)
+tensorflow::tf$random$set_random_seed(seed)
 ```
 
 ```{r}
