@@ -135,7 +135,7 @@ We do not incorporate claim sizes which would also be available through freMTPL2
 As the current package version provides a slightly amended dataset, we use an older dataset available on [openML (ID 41214)](https://www.openml.org/d/41214). Before we can use this data set we need to do some data cleaning. It has been pointed out by [F. Loser](https://www.kaggle.com/floser/comparing-claims-fremtpl2freq-sev/execution) that some claim counts do not seem to be correct. Hence, we use the pre-processing of the data described in the book ["Statistical Foundations of Actuarial Learning and its Applications"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3822407) in Appendix A.1. This pre-processed data can be downloaded from the course GitHub page [here](https://github.com/JSchelldorfer/DeepLearningWithActuarialApplications).
 
 ```{r}
-load("freMTPL2freq.RData")
+load("./0_data/freMTPL2freq.RData")
 ```
 
 ## General data preprocessing

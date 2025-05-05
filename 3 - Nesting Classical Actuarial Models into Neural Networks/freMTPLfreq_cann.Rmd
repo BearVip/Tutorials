@@ -286,7 +286,7 @@ summary(glm2)
 The `summary()` function for a `glm` object provides the statistical tests of signifiance for every single parameter. However, with cateogorical variables the primary interest is to know if a categorical variables at all is significant. This can be done using the R fucntion `drop1`, see its help file for further details. It performs a Likelihood Ratio Test (LRT) which confirms that only the p-value for AreaGLM is above 5%.
 
 ```{r}
-drop1(glm2, test = "LRT")
+# drop1(glm2, test = "LRT")
 ```
 
 **Exercise:** Consider a similar approach as DrivAge for another feature (e.g. BonusMalus)
@@ -582,10 +582,14 @@ Network <- Design %>%
   layer_dense(units = 1, activation = 'linear', name = 'Network', 
               weights = list(array(0, dim = c(q3, 1)), array(log(lambda_hom), dim = c(1))))
 
-Response <- list(Network, LogVol) %>%
-  layer_add(name = 'Add') %>% 
+# Response <- list(Network, LogVol) %>% layer_add() %>%
+#   layer_dense(units = 1, activation = k_exp, name = 'Response', trainable = FALSE,
+#               weights = list(array(1, dim = c(1, 1)), array(0, dim = c(1))))
+
+Response <- do.call(layer_add,list(Network, LogVol)) %>% 
   layer_dense(units = 1, activation = k_exp, name = 'Response', trainable = FALSE,
               weights = list(array(1, dim = c(1, 1)), array(0, dim = c(1))))
+
 
 model_dp <- keras_model(inputs = c(Design, LogVol), outputs = c(Response))
 ```
@@ -616,12 +620,12 @@ With validation_split=0.2 we split the learning data 8:2 into training set and v
 epochs <- 300
 batch.size <- 10000
 validation.split <- 0.2 # set to >0 to see train/validation loss in plot(fit)
-verbose <- 1
+verbose <- 0
 ```
 
 ```{r}
 # expected run-time on Renku 8GB environment around 200 seconds
-exec_time <- system.time(
+# exec_time <- system.time(
   fit <- model_dp %>% fit(
     list(Xtrain, as.matrix(log(train$Exposure))), as.matrix(train$ClaimNb),
     epochs = epochs,
@@ -629,8 +633,8 @@ exec_time <- system.time(
     validation_split = validation.split,
     verbose = verbose
   )
-)
-exec_time[1:5]
+# )
+# exec_time[1:5]
 ```
 
 Let us illustrate the decrease of loss during the gradient descent algorithm.
@@ -843,7 +847,7 @@ Network <- list(Design, BrandEmb, RegionEmb) %>% layer_concatenate(name = 'conca
   layer_dense(units = 1, activation = 'linear', name = 'Network',
               weights = list(array(0, dim = c(q3,1)), array(log(lambda_hom), dim = 1)))
 
-Response <- list(Network, LogVol) %>% layer_add(name = 'Add') %>%
+Response <- do.call(layer_add,list(Network, LogVol)) %>% 
   layer_dense(units = 1, activation = k_exp, name = 'Response', trainable = FALSE,
               weights = list(array(1, dim = c(1,1)), array(0, dim = 1)))
 
@@ -876,7 +880,7 @@ This summary is crucial for a good understanding of the fitted model. It contain
 epochs <- 500
 batch_size <- 10000
 validation_split <- 0.2 # set to >0 to see train/validation loss in plot(fit)
-verbose <- 1
+verbose <- 0
 ```
 
 ```{r}
@@ -1154,7 +1158,7 @@ Network <- list(Design, BrandEmb, RegionEmb) %>% layer_concatenate(name = 'conca
   layer_dense(units = 1, activation = 'linear', name = 'Network',
               weights = list(array(0, dim = c(q3, 1)), array(log(lambda_hom), dim = 1)))
 
-Response <- list(Network, LogVol) %>% layer_add(name = 'Add') %>%
+Response <- do.call(layer_add,list(Network, LogVol)) %>% 
   layer_dense(units = 1, activation = k_exp, name = 'Response', trainable = FALSE,
               weights = list(array(1, dim = c(1, 1)), array(0, dim = 1)))
 
@@ -1183,7 +1187,7 @@ This summary is crucial for a good understanding of the fitted model. It contain
 epochs <- 500
 batch_size <- 10000
 validation_split <- 0.2 # set to >0 to see train/validation loss in plot(fit)
-verbose <- 1
+verbose <- 0
 ```
 
 ```{r}
@@ -1405,7 +1409,7 @@ Model2IA <- function(no_labels) {
     layer_dense(units = 1, activation = 'linear', name = 'NNetwork2',
                 weights = list(array(0, dim = c(neurons[3], 1)), array(0, dim = 1)))
   
-  NNoutput <- list(NNetwork1, NNetwork2, LogExposure) %>% layer_add(name = 'Add') %>%
+  NNoutput <- do.call(layer_add,list(NNetwork1, NNetwork2, LogExposure)) %>% 
     layer_dense(units = 1, activation = k_exp, name = 'NNoutput', trainable = FALSE,
                 weights = list(array(c(1), dim = c(1, 1)), array(0, dim = 1)))
   
@@ -1429,7 +1433,7 @@ summary(model_gamplus)
 # select number of epochs and batch_size
 epochs <- 100
 batch_size <- 10000
-verbose <- 1
+verbose <- 0
 ```
 
 ```{r}
